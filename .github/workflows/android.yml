@@ -2,9 +2,35 @@ keytool -genkey-v-keystore debug.
 
 keystore storepass android alias andr debugkey -keypass android-keyalg RSA -keysize 2048 validity 10000 dname "C-US, O-Android, CN-Android Debug"
 
+name: Block Blasterz
+
+Build Debug APK
+
+run:keytool -genkey-v-keystore debug.
+
+keystore storepass android alias andr debugkey -keypass android-keyalg RSA -keysize 2048 validity 10000 dname "C-US, O-Android, CN-Android Debug"
+
 name: Build Debug APK
 
 run:
+
+if [ -f "gradlew" ]; then /gradlew assembleDebug
+
+elif [ -d "android" ] && [ -f "android
+
+/gradlew ]; then cd android &&./gradlew assembleDebug else
+
+fi
+
+gradle assembleDebug
+
+name: Upload all APKS
+
+uses: actions/upload-artifact@v4 with:
+
+name: my-android-app
+
+path: **/*.apk
 
 if [ -f "gradlew" ]; then /gradlew assembleDebug
 

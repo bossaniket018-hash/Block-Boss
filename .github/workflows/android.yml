@@ -1,0 +1,90 @@
+name: Android CI
+
+on:
+  push:Create a complete Android block puzzle game project that can be built into an APK directly from GitHub using Gradle CLI and GitHub Actions.
+
+GAME:
+- App name: Block Puzzle Game
+- Genre: Classic block puzzle game
+- Platform: Android
+- Language: Kotlin
+- Use a custom Android View/Canvas for the game board.
+- No external game engine required.
+
+FEATURES:
+1. 10x10 block game board.
+2. Generate 3 random block pieces at the bottom.
+3. Player can drag and place blocks onto the board.
+4. Completed rows and columns disappear.
+5. Add points when blocks are placed.
+6. Give bonus points for clearing multiple rows/columns.
+7. Game-over detection when no available piece can be placed.
+8. Restart/New Game button.
+9. Current score display.
+10. Best score saved locally using SharedPreferences.
+11. Smooth touch/drag controls.
+12. Simple animations when blocks are placed or cleared.
+13. Vibration feedback when a block is placed or a line is cleared.
+14. Clean colorful modern UI.
+15. Dark and light theme support.
+16. Responsive layout for different Android screen sizes.
+17. Add a simple home screen with Play button.
+18. Add Game Over screen showing score and best score.
+19. Do not use copyrighted images, sounds, or assets.
+
+PROJECT:
+- Create a complete Android Studio compatible Gradle project.
+- Kotlin source code must be complete and runnable.
+- Include AndroidManifest.xml, Gradle files, resources, themes, strings and launcher icon.
+- Use package name:
+  com.example.blockpuzzlegame
+
+GITHUB:
+- Add GitHub Actions workflow:
+  .github/workflows/build-apk.yml
+- The workflow must build the APK automatically when code is pushed to the main branch.
+- Upload the generated APK as a GitHub Actions artifact.
+- Use a stable Android/Gradle setup compatible with the project.
+
+CLI BUILD:
+Provide exact commands:
+
+chmod +x gradlew
+./gradlew assembleDebug
+
+The debug APK should be generated under:
+app/build/outputs/apk/debug/
+
+Also provide the command for release APK:
+./gradlew assembleRelease
+
+IMPORTANT:
+- Make sure there are no missing files or unresolved dependencies.
+- Do not provide pseudocode.
+- Generate the actual complete project structure and code.
+- Explain step-by-step how to create the files in GitHub, commit/push them, run the GitHub Actions build, and download the APK artifact.
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+
+        
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build
+
